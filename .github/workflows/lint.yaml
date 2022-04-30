@@ -17,7 +17,7 @@ jobs:
         run: /bin/bash scripts/install_build_deps.sh
       - name: Check OpenAPI generated
         run: |
-          make generate
+          make generate || git diff
           git diff --quiet HEAD || (echo -e "\nRun 'make clean && make generate' and check-in OpenAPI specification" && exit 1)
       - name: Make lint
         run: make lint
